@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>AI Mental Support — Demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin:auto; }
+    .box { margin-bottom: 16px; }
+    #messages { border:1px solid #ddd; padding:10px; height:200px; overflow:auto; }
+  </style>
+</head>
+<body>
+  <h1>AI Mental Support — Demo</h1>
+
+  <div class="box">
+    <h3>Signup</h3>
+    <input id="su_user" placeholder="username"> <input id="su_email" placeholder="email"> <input id="su_pass" placeholder="password">
+    <button onclick="signup()">Signup</button>
+  </div>
+
+  <div class="box">
+    <h3>Login</h3>
+    <input id="li_user" placeholder="username"> <input id="li_pass" placeholder="password">
+    <button onclick="login()">Login</button>
+    <div id="token"></div>
+  </div>
+
+  <div class="box">
+    <h3>Chat</h3>
+    <div id="messages"></div>
+    <input id="msg" placeholder="Type message..." style="width:70%">
+    <button onclick="sendChat()">Send</button>
+  </div>
+
+  <div class="box">
+    <h3>Mood History (7 days)</h3>
+    <canvas id="moodChart" width="600" height="200"></canvas>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

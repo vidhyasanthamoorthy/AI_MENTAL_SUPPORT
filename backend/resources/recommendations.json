@@ -1,0 +1,93 @@
+{
+  "sad": {
+    "tips": [
+      "Write down three things that went okay today.",
+      "Take a short walk and notice your surroundings.",
+      "Reach out to a friend or family member."
+    ],
+    "content": [
+      {
+        "title": "Guided Loving-Kindness",
+        "url": "https://www.youtube.com/results?search_query=loving+kindness+meditation"
+      },
+      {
+        "title": "Understanding Low Mood",
+        "url": "https://www.psychologytoday.com"
+      }
+    ]
+  },
+  "anxious": {
+    "tips": [
+      "Try 4-7-8 breathing for one minute.",
+      "Limit caffeine and hydrate.",
+      "Ground yourself: name 5 things you can see."
+    ],
+    "content": [
+      {
+        "title": "Box Breathing Tutorial",
+        "url": "https://www.youtube.com/results?search_query=box+breathing"
+      },
+      {
+        "title": "Anxiety Basics",
+        "url": "https://www.anxiety.org"
+      }
+    ]
+  },
+  "stressed": {
+    "tips": [
+      "Break tasks into tiny steps and do one.",
+      "Take a 5\u2011minute stretch break.",
+      "Schedule rest like a meeting."
+    ],
+    "content": [
+      {
+        "title": "10\u2011Minute Body Scan",
+        "url": "https://www.youtube.com/results?search_query=body+scan+meditation"
+      },
+      {
+        "title": "Time Management Basics",
+        "url": "https://www.mindtools.com"
+      }
+    ]
+  },
+  "happy": {
+    "tips": [
+      "Savor this moment: describe it in detail.",
+      "Share your good news with someone.",
+      "Do a small act of kindness."
+    ],
+    "content": [
+      {
+        "title": "Gratitude Practice",
+        "url": "https://www.youtube.com/results?search_query=gratitude+practice"
+      }
+    ]
+  },
+  "neutral": {
+    "tips": [
+      "Do a 2\u2011minute mindful check\u2011in.",
+      "Plan one enjoyable activity today.",
+      "Drink water and stretch."
+    ],
+    "content": [
+      {
+        "title": "Mindful Check\u2011in",
+        "url": "https://www.youtube.com/results?search_query=mindful+check+in"
+      }
+    ]
+  },
+  "by_stress": {
+    "Low": [
+      "Maintain routines and sleep hygiene.",
+      "Consider light exercise."
+    ],
+    "Medium": [
+      "Prioritize tasks with a quick to\u2011do.",
+      "Practice 5-minute breathing."
+    ],
+    "High": [
+      "Pause: breathe 4\u20117\u20118.",
+      "Reduce commitments where possible, ask for help."
+    ]
+  }
+}
