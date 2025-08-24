@@ -234,6 +234,34 @@ def chat():
             "timestamp": entry.timestamp.isoformat()
         })
 
+# --- New moods endpoint ---
+@app.get("/api/moods")
+@jwt_required()
+def moods():
+    """Return the current user's mood history for the last N days (default 7)."""
+    days = int(request.args.get("days", 7))
+    current_user = get_jwt_identity()
+
+    with SessionLocal() as session:
+        user = session.query(User).filter_by(username=current_user).first()
+        if not user:
+            return jsonify({"error": "user not found"}), 404
+
+        cutoff = datetime.utcnow() - timedelta(days=days)
+        rows = (
+            session.query(MoodEntry)
+            .filter(MoodEntry.user_id == user.id, MoodEntry.timestamp >= cutoff)
+            .order_by(MoodEntry.timestamp.desc())
+            .all()
+        )
+        return jsonify([
+            {
+                "mood": r.mood,
+                "stress": r.stress_level,
+                "timestamp": r.timestamp.isoformat()
+            } for r in rows
+        ])
+
 @app.route('/test-db', methods=['GET'])
 def test_db():
     try:
