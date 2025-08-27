@@ -48,28 +48,14 @@
       overflow-y: auto;
       background: #fdfdfd;
     }
+    .bot-message {
+      font-style: italic;
+      color: #444;
+    }
   </style>
 </head>
 <body>
   <h1>AI Mental Support — Demo</h1>
-
-  <!-- Signup Section -->
-  <div class="box">
-    <h3>Signup</h3>
-    <input id="su_user" placeholder="username">
-    <input id="su_email" placeholder="email">
-    <input id="su_pass" type="password" placeholder="password">
-    <button onclick="signup()">Signup</button>
-  </div>
-
-  <!-- Login Section -->
-  <div class="box">
-    <h3>Login</h3>
-    <input id="li_user" placeholder="username">
-    <input id="li_pass" type="password" placeholder="password">
-    <button onclick="login()">Login</button>
-    <div id="token" style="margin-top: 10px; color: green;"></div>
-  </div>
 
   <!-- Chat Section -->
   <div class="box">
@@ -79,10 +65,16 @@
     <button onclick="sendChat()">Send</button>
   </div>
 
-  <!-- Mood & Stress History -->
+  <!-- Mood History -->
   <div class="box">
-    <h3>Mood & Stress History (30 days)</h3>
+    <h3>Mood History (30 days)</h3>
     <canvas id="moodHistoryChart" width="600" height="250"></canvas>
+  </div>
+
+  <!-- Stress History -->
+  <div class="box">
+    <h3>Stress History (30 days)</h3>
+    <canvas id="stressHistoryChart" width="600" height="250"></canvas>
   </div>
 
   <!-- Resource Recommendation -->
@@ -102,6 +94,7 @@
     <button id="voice-reply">🔊 Read Bot Reply</button>
   </div>
 
+  <!-- Link external JS -->
   <script src="script.js"></script>
 </body>
 </html>

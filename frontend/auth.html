@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Mental Support — Auth</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    .auth-container {
+      background: #fff;
+      color: #333;
+      width: 380px;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #444;
+    }
+    input {
+      width: 85%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    button {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #2575fc, #6a11cb);
+    }
+    .tab-switch {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    .tab-switch a {
+      color: #6a11cb;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .forgot-password {
+      font-size: 13px;
+      margin-top: 10px;
+      display: block;
+      color: #2575fc;
+      cursor: pointer;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-container">
+    <!-- Login Form -->
+    <div id="login-form">
+      <h2>Login</h2>
+      <input type="text" id="li_username" placeholder="Username or Email" required>
+      <input type="password" id="li_password" placeholder="Password" required>
+      <button onclick="loginUser(event)">Login</button>
+      <span class="forgot-password" onclick="alert('Forgot Password flow here!')">Forgot Password?</span>
+      <div class="tab-switch">
+        Don't have an account? <a onclick="toggleForms('signup')">Sign Up</a>
+      </div>
+    </div>
+
+    <!-- Signup Form -->
+    <div id="signup-form" class="hidden">
+      <h2>Sign Up</h2>
+      <input type="text" id="su_username" placeholder="Username" required>
+      <input type="email" id="su_email" placeholder="Email" required>
+      <input type="password" id="su_password" placeholder="Password" required>
+      <button onclick="signupUser(event)">Sign Up</button>
+      <div class="tab-switch">
+        Already have an account? <a onclick="toggleForms('login')">Login</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = "http://127.0.0.1:5000"; // backend port
+
+    function toggleForms(form) {
+      document.getElementById('login-form').classList.toggle('hidden', form === 'signup');
+      document.getElementById('signup-form').classList.toggle('hidden', form === 'login');
+    }
+
+    async function signupUser(e) {
+      e.preventDefault();
+      const username = document.getElementById("su_username").value.trim();
+      const email = document.getElementById("su_email").value.trim();
+      const password = document.getElementById("su_password").value;
+
+      const res = await fetch(`${API_BASE}/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email, password })
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.error || data.message || "Signup failed");
+        return;
+      }
+      alert("Signup successful! Please login.");
+      toggleForms('login');
+    }
+
+    async function loginUser(e) {
+      e.preventDefault();
+      const usernameOrEmail = document.getElementById("li_username").value.trim();
+      const password = document.getElementById("li_password").value;
+
+      const payload = { username: usernameOrEmail, password };
+
+      const res = await fetch(`${API_BASE}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.access_token) {
+        alert(data.error || data.message || "Login failed");
+        return;
+      }
+
+      localStorage.setItem("token", data.access_token);
+      localStorage.setItem("username", data.username || usernameOrEmail);
+
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

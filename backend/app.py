@@ -281,6 +281,15 @@ def protected_test():
         "user": current_user
     }), 200
 
+# --- Compatibility routes for frontend ---
+@app.post("/signup")
+def signup_alias():
+    return signup()
+
+@app.post("/login")
+def login_alias():
+    return login()
+
 # ---------------------------
 # Run
 # ---------------------------
